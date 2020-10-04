@@ -1,5 +1,5 @@
 ## route.cab
 
-Application in development
+Проект в разработке
 
-[discussion](https://t.me/routecab) 
+[Подписаться на обновления](https://t.me/routecab) 
