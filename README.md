@@ -2,4 +2,4 @@
 
 Application in development
 
- (discuss)[https://t.me/routecab]
+[discuss](https://t.me/routecab)
