@@ -1,4 +1,4 @@
-## Shared regulat trips with Route.Cab
+## Shared regular trips with Route.Cab
 
 ### The Problem!
 Traffic congestion is a very big problem for everyone!
