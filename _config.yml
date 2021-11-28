@@ -1,1 +1,8 @@
 theme: jekyll-theme-cayman
+title: Route.Cab
+description: Shared regulat trips with Route.Cab
+url: https://route.cab
+author: albertincx
+plugins:
+  - jekyll-seo-tag
+google_analytics: G-HQ45Y4835X
