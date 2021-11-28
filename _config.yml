@@ -6,3 +6,5 @@ author: albertincx
 plugins:
   - jekyll-seo-tag
 google_analytics: G-HQ45Y4835X
+github:
+  is_project_page: false
