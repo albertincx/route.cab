@@ -20,7 +20,6 @@ minuses:
 But how to effectively use the space of these empty cars!
 
 
-
 ### Solution!
 https://t.me/RouteCabBot The bot will help you find and organize joint trips
 
