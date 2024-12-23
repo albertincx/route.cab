@@ -217,6 +217,7 @@
             color: white;
         }
     </style>
+    <link href="style.css?v=2" rel="stylesheet" />
 </head>
 <body class="show-en">
 <div class="controls">
@@ -370,12 +371,17 @@
             <div style="text-align: center;">
                 <h3 style="margin-bottom: 20px;" lang="en">Stay Updated</h3>
                 <h3 style="margin-bottom: 20px;" lang="ru">Подпишитесь на обновления</h3>
-                <iframe
-                        src="https://qual.ac/"
-                        frameborder="0"
-                        style="width: 100%; height: 150px; max-width: 400px; border: none; margin: 0 auto; display: block;"
-                        loading="lazy"
-                ></iframe>
+
+                <div class="subscription-container">
+                    <label for="email">Subscribe to our newsletter:</label>
+                    <input type="email" id="email" name="email" placeholder="Enter your email address" required>
+                    <button type="submit" id="subscribe-btn">Subscribe</button>
+                    <br>
+                    <!--    <br>-->
+                    <div id="message"></div>
+                    <br>
+                    <br>
+                </div>
             </div>
         </div>
     </div>
@@ -398,5 +404,6 @@
     gtag('js', new Date());
     gtag('config', 'G-HQ45Y4835X');
 </script>
+<script type="application/javascript" src="script.js?v=3"></script>
 </body>
 </html>

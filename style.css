@@ -1,27 +1,60 @@
-* {
-    margin: 0;
+.subscription-container {
+    /*display: flex;*/
+    /*flex-wrap: wrap;*/
+    justify-content: center;
+    /*align-items: center;*/
+    margin-bottom: 20px;
+    z-index: 1;
+    position: relative;
 }
 
-html, body {
-    height: 100%;
+label {
+    margin-right: 10px;
+    margin-bottom: 10px;
+    font-weight: bold;
+    display: block;
 }
 
-body {
-    background-image: url("bg.jpg");
-    background-size: cover;
-    background-repeat: no-repeat;
+input[type="email"] {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-right: 10px;
 }
 
-#main {
-    position: absolute;
-    top: 50%;
-    right: 50%;
-    transform: translate(50%, -50%);
+input[type="checkbox"] {
+    margin-right: 5px;
+}
+
+button[type="submit"] {
+    padding: 8px 16px;
+    background-color: #4CAF50;
     color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
 }
-#main a {
-    color: white;
+
+button[type="submit"]:hover {
+    background-color: #45a049;
 }
-a.bot {
-    font-size: 1.4em;
+
+#message {
+    margin-top: 10px;
+    font-weight: bold;
+}
+.bg {
+    position: fixed;
+    font-size: 100px;
+    transform: rotateZ(-29deg);
+    color: #a9a9a947;
+    width: 160%;
+}
+#apppopupmax {
+    display: none;
+}
+@media (min-width: 992px) {
+    .bg {
+        font-size: 160px;
+    }
 }
