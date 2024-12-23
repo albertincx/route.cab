@@ -2,28 +2,394 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Route.cab</title>
-    <link rel="stylesheet" href="style.css">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <link rel="manifest" href="/site.webmanifest">
-    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
-    <meta name="msapplication-TileColor" content="#da532c">
-    <meta name="theme-color" content="#ffffff">
-    <meta name="google-adsense-account" content="ca-pub-9147007155868784">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Route.Cab - smart service for organizing daily shared rides. Save time and money while helping to reduce traffic. | Умный сервис для организации совместных ежедневных поездок">
+    <meta name="keywords" content="shared rides, carpooling, daily routes, ride sharing, route cab, routecab, совместные поездки, карпулинг, ежедневные маршруты">
+    <title>Route.Cab - Smart Ride Sharing | Умный поиск попутчиков</title>
+    <style>
+        :root {
+            --primary: #3b82f6;
+            --secondary: #2563eb;
+            --text: #e5e7eb;
+            --light: #1f2937;
+            --bg: #111827;
+            --card-bg: #1f2937;
+            --card-border: rgba(255, 255, 255, 0.1);
+        }
+
+        [data-theme="dark"] {
+            --primary: #3b82f6;
+            --secondary: #2563eb;
+            --text: #e5e7eb;
+            --light: #1f2937;
+            --bg: #111827;
+            --card-bg: #1f2937;
+            --card-border: rgba(255, 255, 255, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        body {
+            font-family: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background: var(--bg);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .controls {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+            z-index: 1000;
+            background: var(--card-bg);
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .control-btn {
+            background: var(--card-bg);
+            border: 2px solid var(--primary);
+            padding: 5px 15px;
+            cursor: pointer;
+            color: var(--primary);
+            font-weight: bold;
+            border-radius: 5px;
+        }
+
+        .control-btn.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        body, head {
+            [lang="en"], [lang="ru"] {
+                display: none;
+            }
+        }
+
+        .show-en [lang="en"] {
+            display: block;
+        }
+
+        .show-ru [lang="ru"] {
+            display: block;
+        }
+
+        header {
+            background: var(--primary);
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .hero-text {
+            font-size: 1.25rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        section {
+            padding: 60px 0;
+        }
+
+        .problem {
+            background: var(--light);
+        }
+
+        .solution {
+            background: var(--bg);
+        }
+
+        .coming-soon {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            text-align: center;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .feature-card {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--card-border);
+            height: 100%;
+        }
+
+        .coming-soon .feature-card {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            color: white;
+        }
+
+        .cta {
+            text-align: center;
+            background: var(--primary);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 40px;
+            display: inline-block;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .cta:hover {
+            background: var(--secondary);
+        }
+
+        .cta.coming-soon-btn {
+            background: var(--accent);
+            margin: 40px 10px;
+        }
+
+        .cta.coming-soon-btn:hover {
+            background: #0d9668;
+        }
+
+        footer {
+            background: var(--light);
+            color: var(--text);
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        .social-links a {
+            color: var(--text);
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        .social-links a:hover {
+            text-decoration: underline;
+        }
+
+        .coming-soon-label {
+            background: var(--accent);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        .theme-toggle {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 34px;
+            background: none;
+            border: 2px solid var(--primary);
+            border-radius: 5px;
+            cursor: pointer;
+            color: var(--primary);
+        }
+
+        .theme-toggle.active {
+            background: var(--primary);
+            color: white;
+        }
+    </style>
 </head>
-<body>
-<div id="main">
-    <h1>Arrange the route yourself</h1>
-    <div>
-        Coming soon...
-        <br />
-        <br />
-        <a href="https://t.me/routecab">or subscribe to news</a>
-    </div>
+<body class="show-en">
+<div class="controls">
+    <button class="control-btn active" onclick="switchLang('en')">EN</button>
+    <button class="control-btn" onclick="switchLang('ru')">RU</button>
 </div>
+
+<header>
+    <div class="container">
+        <h1 lang="en">Route.Cab - Smart Ride Sharing</h1>
+        <h1 lang="ru">Route.Cab - Умный поиск попутчиков</h1>
+
+        <p class="hero-text" lang="en">Organize shared daily rides and help make roads less congested</p>
+        <p class="hero-text" lang="ru">Организуйте совместные ежедневные поездки и помогите сделать дороги свободнее</p>
+    </div>
+</header>
+
+<section class="problem">
+    <div class="container">
+        <h2 lang="en">The Problem We're Solving</h2>
+        <h2 lang="ru">Проблема, которую мы решаем</h2>
+
+        <div class="features">
+            <div class="feature-card">
+                <h3 lang="en">Growing Traffic Congestion</h3>
+                <h3 lang="ru">Пробки становятся больше</h3>
+
+                <p lang="en">Every day, thousands of half-empty cars create traffic jams, making it difficult for all road users.</p>
+                <p lang="ru">Ежедневно тысячи полупустых автомобилей создают заторы на дорогах, затрудняя движение для всех участников движения.</p>
+            </div>
+
+            <div class="feature-card">
+                <h3 lang="en">Inefficient Usage</h3>
+                <h3 lang="ru">Неэффективное использование</h3>
+
+                <p lang="en">Most people drive alone while following similar routes at the same time.</p>
+                <p lang="ru">Большинство людей ездят по одному в машине, хотя едут по схожим маршрутам в одно и то же время.</p>
+            </div>
+
+            <div class="feature-card">
+                <h3 lang="en">Impact on Public Transport</h3>
+                <h3 lang="ru">Влияние на общественный транспорт</h3>
+
+                <p lang="en">Traffic jams slow down buses, creating discomfort for public transport passengers.</p>
+                <p lang="ru">Из-за пробок автобусы движутся медленнее, что создает дискомфорт для пассажиров общественного транспорта.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="solution">
+    <div class="container">
+        <h2 lang="en">Our Solution</h2>
+        <h2 lang="ru">Наше решение</h2>
+
+        <div class="features">
+            <div class="feature-card">
+                <h3 lang="en">Smart Ride Matching</h3>
+                <h3 lang="ru">Умный поиск попутчиков</h3>
+
+                <p lang="en">Our bot automatically finds people with similar daily routes and helps organize shared rides.</p>
+                <p lang="ru">Наш бот автоматически находит людей со схожими ежедневными маршрутами и помогает организовать совместные поездки.</p>
+            </div>
+
+            <div class="feature-card">
+                <h3 lang="en">Regular Routes</h3>
+                <h3 lang="ru">Регулярные маршруты</h3>
+
+                <p lang="en">The service specializes in daily commutes, such as home-work-home, making it particularly convenient for regular use.</p>
+                <p lang="ru">Сервис специализируется на ежедневных поездках, таких как дом-работа-дом, что делает его особенно удобным для постоянного использования.</p>
+            </div>
+
+            <div class="feature-card">
+                <h3 lang="en">Free and Simple</h3>
+                <h3 lang="ru">Бесплатно и просто</h3>
+
+                <p lang="en">The service is completely free. Just specify your route, and the bot will find suitable companions.</p>
+                <p lang="ru">Сервис полностью бесплатный. Просто укажите свой маршрут, и бот найдет подходящих попутчиков.</p>
+            </div>
+        </div>
+
+        <a href="https://t.me/RouteCabBot" class="cta" lang="en">Start Using the Bot</a>
+        <a href="https://t.me/RouteCabBot" class="cta" lang="ru">Начать использовать бота</a>
+    </div>
+</section>
+
+<section class="coming-soon">
+    <div class="container">
+        <span class="coming-soon-label" lang="en">Coming Soon</span>
+        <span class="coming-soon-label" lang="ru">Скоро</span>
+
+        <h2 lang="en">Route.Cab Web Platform on Telegram Open Network mini App</h2>
+        <h2 lang="ru">Веб-платформа Route.Cab</h2>
+
+        <div class="features">
+            <div class="feature-card">
+                <h3 lang="en">Advanced Search</h3>
+                <h3 lang="ru">Расширенный поиск</h3>
+
+                <p lang="en">Convenient interface for finding companions with advanced filters and route mapping</p>
+                <p lang="ru">Удобный интерфейс для поиска попутчиков с расширенными фильтрами и картой маршрутов</p>
+            </div>
+
+            <div class="feature-card">
+                <h3 lang="en">Personal Dashboard</h3>
+                <h3 lang="ru">Личный кабинет</h3>
+
+                <p lang="en">Manage your routes, settings, and preferences in one place</p>
+                <p lang="ru">Управляйте своими маршрутами, настройками и предпочтениями в одном месте</p>
+            </div>
+
+            <div class="feature-card">
+                <h3 lang="en">Rating System</h3>
+                <h3 lang="ru">Рейтинг и отзывы</h3>
+
+                <p lang="en">User rating system and reviews to enhance safety and trust</p>
+                <p lang="ru">Система рейтинга пользователей и отзывов для повышения безопасности и доверия</p>
+            </div>
+        </div>
+
+        <a href="#" class="cta coming-soon-btn" lang="en">Be the First to Know</a>
+        <a href="#" class="cta coming-soon-btn" lang="ru">Узнать первым о запуске</a>
+    </div>
+</section>
+
+<footer>
+    <div class="container">
+        <div class="social-links">
+            <p lang="en">Join our community:</p>
+            <p lang="ru">Присоединяйтесь к нам:</p>
+
+            <a href="https://t.me/routecab">Telegram Channel (EN)</a>
+            <a href="https://t.me/routecabru">Telegram Channel (RU)</a>
+        </div>
+    </div>
+</footer>
+<footer style="background: var(--light); color: var(--text); padding: 40px 0;">
+    <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; align-items: start;">
+            <!-- Community Links -->
+            <div style="text-align: center;">
+                <h3 style="margin-bottom: 20px;" lang="en">Join our community</h3>
+                <h3 style="margin-bottom: 20px;" lang="ru">Присоединяйтесь к нам</h3>
+                <div style="display: flex; flex-direction: column; gap: 10px;">
+                    <a href="https://t.me/routecab" style="color: var(--text); text-decoration: none;">Telegram Channel (EN)</a>
+                    <a href="https://t.me/routecabru" style="color: var(--text); text-decoration: none;">Telegram Channel (RU)</a>
+                </div>
+            </div>
+
+            <!-- Subscription iframe -->
+            <div style="text-align: center;">
+                <h3 style="margin-bottom: 20px;" lang="en">Stay Updated</h3>
+                <h3 style="margin-bottom: 20px;" lang="ru">Подпишитесь на обновления</h3>
+                <iframe
+                        src="https://qual.ac/"
+                        frameborder="0"
+                        style="width: 100%; height: 150px; max-width: 400px; border: none; margin: 0 auto; display: block;"
+                        loading="lazy"
+                ></iframe>
+            </div>
+        </div>
+    </div>
+</footer>
+<script>
+    function switchLang(lang) {
+        document.body.classList.remove('show-en', 'show-ru');
+        document.body.classList.add('show-' + lang);
+
+        const buttons = document.querySelectorAll('.control-btn');
+        buttons.forEach(btn => btn.classList.remove('active'));
+        document.querySelector(`.control-btn[onclick="switchLang('${lang}')"]`).classList.add('active');
+    }
+</script>
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-HQ45Y4835X"></script>
 <script>
